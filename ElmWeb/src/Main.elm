@@ -32,8 +32,8 @@ init =
 
 type Msg
     = NoOp
-    | StartRecording
-    | StopRecording
+    | StartAudioRecording
+    | StopAudioRecording
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -42,11 +42,11 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        StartRecording ->
-            ( { model | action = Just "recording" }, startAudioRecording "" )
+        StartAudioRecording ->
+            ( { model | action = Just "Audio recording" }, startAudioRecording "" )
 
-        StopRecording ->
-            ( { model | action = Just "stopped" }, stopAudioRecording "" )
+        StopAudioRecording ->
+            ( { model | action = Just "Audio stopped" }, stopAudioRecording "" )
 
 
 
@@ -58,8 +58,8 @@ view model =
     div []
         [ img [ src "/logo.svg" ] []
         , h1 [] [ text "Your Elm App is working!" ]
-        , Html.button [ Html.Events.onClick StartRecording ] [ Html.text "Record" ]
-        , Html.button [ Html.Events.onClick StopRecording ] [ Html.text "Stop" ]
+        , Html.button [ Html.Events.onClick StartAudioRecording ] [ Html.text "Record" ]
+        , Html.button [ Html.Events.onClick StopAudioRecording ] [ Html.text "Stop" ]
         , Html.div [] [ Html.text (model.action |> Maybe.withDefault "") ]
         , Html.div [ Html.Attributes.attribute "id" "recordings" ] []
         ]
