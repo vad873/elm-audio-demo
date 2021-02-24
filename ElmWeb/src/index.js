@@ -1,8 +1,7 @@
 import './main.css';
 import { Elm } from './Main.elm';
 import * as serviceWorker from './serviceWorker';
-import { testFunc, startRecording, stopRecording } from './recHelper.js';
-//import { testFunc } from './testmod.js';
+import { startAudioRecording, stopAudioRecording } from './recHelper.js';
 
 
 var app = Elm.Main.init({
