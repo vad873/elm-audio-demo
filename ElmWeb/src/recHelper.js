@@ -9,7 +9,7 @@ var input; 							//MediaStreamAudioSourceNode we'll be recording
 var AudioContext = window.AudioContext || window.webkitAudioContext;
 var audioContext //audio context to help us record
 
-export function startRecording() {
+export function startAudioRecording() {
 	console.log("recordButton clicked");
 
 	/*
@@ -61,7 +61,7 @@ export function startRecording() {
 	});
 }
 
-export function pauseRecording(){
+export function pauseAudioRecording(){
 	console.log("pauseButton clicked rec.recording=",rec.recording );
 	if (rec.recording){
 		//pause

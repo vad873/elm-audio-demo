@@ -14,15 +14,11 @@ var app = Elm.Main.init({
 serviceWorker.unregister();
 
 
-app.ports.startRecording.subscribe(function(message) {
+app.ports.startAudioRecording.subscribe(function(message) {
     startRecording();
 });
 
-/*app.ports.helloWorld.subscribe(function(message) {
-    console.log("app.ports.helloWorld");
-    testFunc();
-});*/
 
-app.ports.stopRecording.subscribe(function(message) {
+app.ports.stopAudioRecording.subscribe(function(message) {
     stopRecording();
 });

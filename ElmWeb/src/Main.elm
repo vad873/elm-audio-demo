@@ -6,13 +6,10 @@ import Html.Attributes exposing (src)
 import Html.Events
 
 
-port startRecording : String -> Cmd msg
+port startAudioRecording : String -> Cmd msg
 
 
-port stopRecording : String -> Cmd msg
-
-
-port helloWorld : String -> Cmd msg
+port stopAudioRecording : String -> Cmd msg
 
 
 
@@ -46,10 +43,10 @@ update msg model =
             ( model, Cmd.none )
 
         StartRecording ->
-            ( { model | action = Just "recording" }, startRecording "" )
+            ( { model | action = Just "recording" }, startAudioRecording "" )
 
         StopRecording ->
-            ( { model | action = Just "stopped" }, stopRecording "" )
+            ( { model | action = Just "stopped" }, stopAudioRecording "" )
 
 
 
