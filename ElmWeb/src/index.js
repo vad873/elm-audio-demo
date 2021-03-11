@@ -1,7 +1,8 @@
 import './main.css';
 import { Elm } from './Main.elm';
 import * as serviceWorker from './serviceWorker';
-import { startAudioRecording, stopAudioRecording } from './recHelper.js';
+import { startAudioRecording, stopAudioRecording, startVideoRecording } from './recHelper.js';
+import * as recVideoHelper from './recVideoHelper.js';
 
 
 var app = Elm.Main.init({
@@ -15,10 +16,18 @@ serviceWorker.unregister();
 
 
 app.ports.startAudioRecording.subscribe(function(message) {
-    startRecording();
+    startAudioRecording();
 });
 
 
 app.ports.stopAudioRecording.subscribe(function(message) {
-    stopRecording();
+    stopAudioRecording();
 });
+
+app.ports.initVideo.subscribe(function(message) {
+    recVideoHelper.initVideo();
+});
+
+/*app.ports.startVideoRecording.subscribe(function(message) {
+    startVideoRecording();
+});*/
