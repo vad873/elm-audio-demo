@@ -1,72 +1,9 @@
 //webkitURL is deprecated but nevertheless
 URL = window.URL || window.webkitURL;
 
-
-// VIDEO
-/*var preview = document.getElementById("canvas");
-
-function wait(delayInMS) {
-  return new Promise(resolve => setTimeout(resolve, delayInMS));
-}
-
-function startRec(stream, lengthInMS) {
-  let recorder = new MediaRecorder(stream);
-  let data = [];
-
-  recorder.ondataavailable = event => data.push(event.data);
-  recorder.start();
-  console.log(recorder.state + " for " + (lengthInMS/1000) + " seconds...");
-
-  let stopped = new Promise((resolve, reject) => {
-    recorder.onstop = resolve;
-    recorder.onerror = event => reject(event.name);
-  });
-
-  let recorded = wait(lengthInMS).then(
-    () => recorder.state == "recording" && recorder.stop()
-  );
-
-  return Promise.all([
-    stopped,
-    recorded
-  ])
-  .then(() => data);
-}
-
-function stopRec(stream) {
-  stream.getTracks().forEach(track => track.stop());
-}
-
-export function startVideoRecording() {
-	navigator.mediaDevices.getUserMedia({
-	    video: true,
-	    audio: true
-	  }).then(stream => {
-			preview = document.getElementById("canvas");
-	    preview.srcObject = stream;
-	    preview.captureStream = preview.captureStream || preview.mozCaptureStream;
-
-			//preview.onplaying = startRec(preview.captureStream(), 10000);
-	    return new Promise(resolve => preview.onplaying = resolve);
-	  }).then(() => {
-			startRec(preview.captureStream(), 1000);
-		})
-	  .then (recordedChunks => {
-	    let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
-	    //recording.src = URL.createObjectURL(recordedBlob);
-	    //downloadButton.href = recording.src;
-	    //downloadButton.download = "RecordedVideo.webm";
-
-	    console.log("Successfully recorded " + recordedBlob.size + " bytes of " +
-	        recordedBlob.type + " media.");
-	  })
-	  .catch(err => alert(err));
-}*/
-
-
 // AUDIO
-var gumStream; 						//stream from getUserMedia()
-var rec; 							//Recorder.js object
+var gumStream; 					//stream from getUserMedia()
+var rec; 								//Recorder.js object
 var input; 							//MediaStreamAudioSourceNode we'll be recording
 
 // shim for AudioContext when it's not avb.

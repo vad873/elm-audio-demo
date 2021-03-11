@@ -12,11 +12,10 @@ port startAudioRecording : String -> Cmd msg
 port stopAudioRecording : String -> Cmd msg
 
 
+port startVideoRecording : String -> Cmd msg
 
---port startVideoRecording : String -> Cmd msg
 
-
-port initVideo : String -> Cmd msg
+port stopVideoRecording : String -> Cmd msg
 
 
 
@@ -58,10 +57,10 @@ update msg model =
             ( { model | action = Just "Audio stopped" }, stopAudioRecording "" )
 
         StartVideoRecording ->
-            ( model, initVideo "" )
+            ( { model | action = Just "Video recording" }, startVideoRecording "" )
 
         StopVideoRecording ->
-            ( model, Cmd.none )
+            ( { model | action = Just "Video stopped" }, stopVideoRecording "" )
 
 
 
@@ -72,11 +71,10 @@ view : Model -> Html Msg
 view model =
     div []
         [ img [ src "/logo.svg" ] []
-        , h1 [] [ text "Your Elm App is working!" ]
+        , Html.h1 [] [ Html.text (model.action |> Maybe.withDefault "") ]
         , Html.hr [] []
         , Html.button [ Html.Events.onClick StartAudioRecording ] [ Html.text "Record Audio" ]
         , Html.button [ Html.Events.onClick StopAudioRecording ] [ Html.text "Stop Audio Recording" ]
-        , Html.div [] [ Html.text (model.action |> Maybe.withDefault "") ]
         , Html.div [ Html.Attributes.attribute "id" "recordings" ] []
         , Html.hr [] []
         , Html.video
@@ -95,13 +93,10 @@ view model =
             , Html.Attributes.attribute "style" "width: 480px; height: 320px"
             ]
             []
-        , Html.button [ Html.Attributes.attribute "id" "startButton" ] [ Html.text "startButton" ]
-        , Html.button [ Html.Attributes.attribute "id" "stopButton" ] [ Html.text "stopButton" ]
-        , Html.button [ Html.Attributes.attribute "id" "downloadButton" ] [ Html.text "downloadButton" ]
-        , Html.div [ Html.Attributes.attribute "id" "log" ] [ Html.text "log" ]
-        , Html.button [ Html.Events.onClick StartVideoRecording ] [ Html.text "initVideo" ]
-
-        --, Html.button [ Html.Events.onClick StopVideoRecording ] [ Html.text "Stop Video Recording" ]
+        , Html.button [ Html.Events.onClick StartVideoRecording ] [ Html.text "Start Video Recording" ]
+        , Html.button [ Html.Events.onClick StopVideoRecording ] [ Html.text "Stop Video Recording" ]
+        , Html.div [ Html.Attributes.attribute "id" "video-recordings" ] []
+        , Html.hr [] []
         ]
 
 

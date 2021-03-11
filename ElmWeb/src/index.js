@@ -1,7 +1,7 @@
 import './main.css';
 import { Elm } from './Main.elm';
 import * as serviceWorker from './serviceWorker';
-import { startAudioRecording, stopAudioRecording, startVideoRecording } from './recHelper.js';
+import * as recHelper from './recHelper.js';
 import * as recVideoHelper from './recVideoHelper.js';
 
 
@@ -14,20 +14,18 @@ var app = Elm.Main.init({
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-
 app.ports.startAudioRecording.subscribe(function(message) {
-    startAudioRecording();
+    recHelper.startAudioRecording();
 });
-
 
 app.ports.stopAudioRecording.subscribe(function(message) {
-    stopAudioRecording();
+    recHelper.stopAudioRecording();
 });
 
-app.ports.initVideo.subscribe(function(message) {
-    recVideoHelper.initVideo();
+app.ports.startVideoRecording.subscribe(function(message) {
+    recVideoHelper.startVideoRecording();
 });
 
-/*app.ports.startVideoRecording.subscribe(function(message) {
-    startVideoRecording();
-});*/
+app.ports.stopVideoRecording.subscribe(function(message) {
+    recVideoHelper.stopVideoRecording();
+});
